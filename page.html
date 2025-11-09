@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"> <!-- Default theme is dark -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reva Enterprises - Professional Legal & Notary Services</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons for modern, clean icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- AOS (Animate On Scroll) Library for scroll effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Theming */
+        :root[data-theme="dark"] {
+            --bg-primary: #0D1117; --bg-secondary: #161B22; --bg-tertiary: #21262D;
+            --bg-overlay: rgba(13, 17, 23, 0.7); --border-primary: #30363D;
+            --text-primary: #C9D1D9; --text-secondary: #8B949E; --text-heading: #FFFFFF;
+            --glow-color: rgba(147, 197, 253, 0.5); --glow-color-rgb: 147, 197, 253;
+            --spotlight-color: rgba(147, 197, 253, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --particle-color: rgba(165, 180, 252, 0.7);
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: #FFFFFF; --bg-secondary: #F3F4F6; --bg-tertiary: #E5E7EB;
+            --bg-overlay: rgba(255, 255, 255, 0.75); --border-primary: #D1D5DB;
+            --text-primary: #374151; --text-secondary: #6B7280; --text-heading: #111827;
+            --glow-color: rgba(59, 130, 246, 0.5); --glow-color-rgb: 59, 130, 246;
+            --spotlight-color: rgba(59, 130, 246, 0.15);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --particle-color: rgba(99, 102, 241, 0.7);
+        }
+
+        /* Base Body Styles */
+        body {
+            font-family: 'Inter', sans-serif; background-color: var(--bg-primary);
+            color: var(--text-primary); scroll-behavior: smooth;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--bg-tertiary); border-radius: 10px;
+            border: 2px solid var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--border-primary); }
+
+        /* A subtle glow effect for buttons on hover */
+        .glow-on-hover:hover { box-shadow: 0 0 15px 0 var(--glow-color); }
+        
+        /* REFINED: Shimmering Gradient Text Effect */
+        .shimmer-glow {
+            position: relative;
+            background: linear-gradient(90deg, #BFDBFE, #A5B4FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s infinite linear;
+            background-size: 200% 100%;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        html[data-theme="dark"] .shimmer-glow {
+            text-shadow: 0 0 8px rgba(191, 219, 254, 0.2);
+        }
+        
+        /* Breathing & Blinking Glow for Primary Button */
+        @keyframes breathing-glow {
+            0%, 100% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 20px 5px rgba(99, 102, 241, 0.5); }
+            75% { box-shadow: 0 0 25px 10px rgba(191, 219, 254, 0.7); } /* Blink effect */
+        }
+        .breathing-button {
+            animation: breathing-glow 3s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Apple-like Liquid Glass Header */
+        .glass-header {
+            background-color: var(--bg-overlay);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Glass effect for buttons in the header */
+        .glass-button {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--glass-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-button:hover {
+            background-color: var(--border-primary);
+        }
+        
+        /* Glowing underline effect for nav links */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #BFDBFE, #A5B4FC);
+            box-shadow: 0 0 10px rgba(165, 180, 252, 0.7);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.4s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+        .nav-link:hover {
+            color: var(--text-heading);
+        }
+
+
+        /* Other styles */
+        .form-input {
+            background-color: var(--bg-secondary); border: 1px solid var(--border-primary); color: var(--text-primary);
+            transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, box-shadow 0.2s;
+        }
+        .form-input:focus {
+            outline: none; border-color: #58A6FF; box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+        }
+        .service-card {
+            background-color: var(--bg-secondary); border: 1px solid var(--border-primary);
+            border-radius: 1rem; padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease;
+            transform-style: preserve-3d;
+        }
+        .service-card:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) scale(1.05);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1), 0 0 20px var(--glow-color);
+        }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;
+            z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        html[data-theme="dark"] .modal-overlay { background: rgba(13, 17, 23, 0.8); }
+        html[data-theme="light"] .modal-overlay { background: rgba(255, 255, 255, 0.8); }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--bg-secondary); border: 1px solid var(--border-primary);
+            border-radius: 1rem; padding: 2rem; width: 90%; max-width: 500px; transform: scale(0.9);
+            transition: transform 0.4s ease, background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .radio-group label {
+            background-color: var(--bg-tertiary); border: 1px solid var(--border-primary);
+            color: var(--text-secondary); padding: 0.75rem 1.5rem; border-radius: 9999px;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .radio-group input[type="radio"] { display: none; }
+        .radio-group input[type="radio"]:checked + label {
+            background-color: #58A6FF; border-color: #58A6FF; color: #FFFFFF; font-weight: 600;
+        }
+        .page-view {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-primary);
+            z-index: 90; opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
+            overflow-y: auto;
+        }
+        .page-view.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        body.overflow-hidden { overflow: hidden; }
+        [data-aos] { overflow-x: hidden; }
+        .privacy-card {
+            position: relative; background-color: var(--bg-secondary); border: 1px solid var(--border-primary);
+            overflow: hidden; transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .privacy-card::before {
+            content: ''; position: absolute; left: var(--x, 50%); top: var(--y, 50%);
+            transform: translate(-50%, -50%); width: 0; height: 0;
+            background: radial-gradient(circle closest-side, var(--spotlight-color), transparent);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+        .privacy-card:hover::before { width: 400px; height: 400px; }
+        .privacy-card .content { position: relative; z-index: 1; transition: opacity 0.3s ease; }
+        .privacy-card:not(:hover) .content { opacity: 0.7; }
+        .themed-text { color: var(--text-primary); transition: color 0.5s ease; }
+        .themed-heading { color: var(--text-heading); transition: color 0.5s ease; }
+        .themed-text-secondary { color: var(--text-secondary); transition: color 0.5s ease; }
+        .themed-bg-tertiary { background-color: var(--bg-tertiary); transition: background-color 0.5s ease; }
+        .themed-border { border-color: var(--border-primary); transition: border-color 0.5s ease; }
+
+        /* Chatbot "Buddie" Styles */
+        #buddie-widget {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 110;
+            transform: scale(0) translateY(50px);
+            opacity: 0;
+            filter: blur(10px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, filter 0.3s ease;
+            pointer-events: none;
+        }
+        #buddie-widget.active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            filter: blur(0);
+            pointer-events: auto;
+        }
+        #buddie-toggle {
+            width: 4rem; height: 4rem; border-radius: 9999px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: transform 0.3s ease;
+        }
+        #buddie-toggle:hover { transform: scale(1.1); }
+        #buddie-chat-window {
+            position: absolute; bottom: 5rem; right: 0; width: 350px; height: 500px;
+            background-color: var(--bg-secondary); border: 1px solid var(--border-primary);
+            border-radius: 1rem; display: flex; flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(20px) scale(0.95); opacity: 0; visibility: hidden;
+            transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+        }
+        #buddie-widget.chat-open #buddie-chat-window {
+            transform: translateY(0) scale(1); opacity: 1; visibility: visible;
+        }
+        .buddie-header {
+            padding: 1rem; border-bottom: 1px solid var(--border-primary);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        #buddie-messages {
+            flex-grow: 1; padding: 1rem; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 1rem;
+        }
+        .buddie-message {
+            max-width: 80%; padding: 0.75rem 1rem; border-radius: 1rem;
+            background-color: var(--bg-tertiary); align-self: flex-start;
+            opacity: 0; transform: translateY(10px);
+            animation: fade-in-up 0.5s ease forwards;
+        }
+        .buddie-message.user-message {
+            align-self: flex-end;
+            background-color: #3b82f6;
+            color: white;
+        }
+        @keyframes fade-in-up { to { opacity: 1; transform: translateY(0); } }
+        .buddie-options button {
+            width: 100%; text-align: left; padding: 0.75rem 1rem;
+            border: 1px solid var(--border-primary); border-radius: 0.5rem;
+            background-color: var(--bg-secondary);
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .buddie-options button:hover {
+            background-color: var(--bg-tertiary); border-color: #58A6FF;
+        }
+        .buddie-footer {
+            padding: 0.5rem;
+            border-top: 1px solid var(--border-primary);
+        }
+        .buddie-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        /* Interactive Particle Background for Calculator */
+        #calculator {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--bg-primary);
+        }
+        #interactive-background {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        /* Gamified Calculator Styles */
+        .calc-step { display: none; }
+        .calc-step.active {
+            display: block;
+            animation: slide-in 0.5s ease-out;
+        }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        #calc-progress-bar { transition: width 0.5s ease-out; }
+
+        /* Game Page Styles */
+        .game-option {
+            border: 2px solid var(--border-primary);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fade-in-up 0.5s ease forwards;
+        }
+        .game-option:hover {
+            border-color: #58A6FF;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+        .game-option.correct {
+            border-color: #22c55e;
+            animation: pulse-green 1s ease-in-out;
+        }
+        .game-option.incorrect {
+            border-color: #ef4444;
+            animation: shake-red 0.5s ease-in-out;
+        }
+        .game-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 25px 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        @keyframes shake-red {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        /* Interactive Waterfall Footer */
+        #contact {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--bg-primary);
+        }
+        #waterfall-background {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .contact-content {
+            position: relative;
+            z-index: 10;
+        }
+        .contact-card {
+            background-color: var(--bg-overlay);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ===== Header/Navigation ===== -->
+    <header class="sticky top-0 z-50 glass-header">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold themed-heading">Reva Enterprises</h1>
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" id="navGameLink" class="themed-text nav-link">Game</a>
+                    <a href="#" id="navServicesLink" class="themed-text nav-link">Services</a>
+                    <a href="#calculator" class="themed-text nav-link">Fee Calculator</a>
+                    <a href="#about" class="themed-text nav-link">About</a>
+                </div>
+                <button id="theme-switcher" class="glass-button p-2 rounded-full">
+                    <i data-lucide="sun" class="w-5 h-5 themed-text hidden" id="sun-icon"></i>
+                    <i data-lucide="moon" class="w-5 h-5 themed-text" id="moon-icon"></i>
+                </button>
+                <button id="contactBtn" class="glass-button px-4 py-2 rounded-full text-sm font-semibold themed-text">
+                    Contact Us
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-6">
+            <div class="absolute top-0 -left-1/4 w-full h-full bg-gradient-to-br from-blue-900/50 via-transparent to-transparent rounded-full blur-3xl opacity-40"></div>
+            <div class="absolute bottom-0 -right-1/4 w-full h-full bg-gradient-to-tl from-purple-900/50 via-transparent to-transparent rounded-full blur-3xl opacity-40"></div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto">
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight themed-heading" data-aos="fade-up">
+                    <span class="shimmer-glow">Seamless & Secure</span><br> Legal Documentation Services
+                </h2>
+                <p class="mt-6 text-lg md:text-xl themed-text-secondary max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    Reva Enterprises provides swift, reliable, and professional legal services. We handle all your documentation needs with precision and care.
+                </p>
+                <div class="mt-10" data-aos="fade-up" data-aos-delay="400">
+                    <button id="exploreServicesBtn" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-10 rounded-full text-lg breathing-button hover:scale-105">
+                        Explore Our Services
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Fee Calculator Section (GAMIFIED) ===== -->
+        <section id="calculator" class="py-20 sm:py-28 themed-bg-tertiary">
+            <canvas id="interactive-background"></canvas>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h3 class="text-4xl font-bold tracking-tight themed-heading">Stamp Duty and Registration Calculator</h3>
+                    <p class="mt-3 text-lg themed-text-secondary">Answer a few questions to get your estimate!</p>
+                </div>
+                <div class="max-w-xl mx-auto service-card p-8 md:p-12" data-aos="zoom-in-up">
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-[var(--bg-tertiary)] rounded-full h-2.5 mb-8">
+                        <div id="calc-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                    
+                    <div id="calculator-steps">
+                        <!-- Step 1: Location -->
+                        <div id="calc-step-1" class="calc-step active">
+                            <label for="propertyLocation" class="block text-xl font-semibold themed-heading mb-4 text-center">Where is the property located?</label>
+                            <select id="propertyLocation" class="w-full p-3 rounded-md form-input text-center">
+                                <option value="urban">Municipal Corporation / Council</option>
+                                <option value="rural">Gram Panchayat</option>
+                            </select>
+                        </div>
+                        <!-- Step 2: Period -->
+                        <div id="calc-step-2" class="calc-step">
+                             <label for="period" class="block text-xl font-semibold themed-heading mb-4 text-center">What is the agreement period?</label>
+                            <input type="number" id="period" placeholder="e.g., 11 months" class="w-full p-3 rounded-md form-input text-center">
+                        </div>
+                        <!-- Step 3: Deposits -->
+                        <div id="calc-step-3" class="calc-step space-y-4">
+                            <label class="block text-xl font-semibold themed-heading mb-4 text-center">Enter the deposit amounts</label>
+                            <div><label for="depositAmount" class="block text-sm font-medium themed-text mb-2">Refundable Deposit</label><input type="number" id="depositAmount" placeholder="e.g., 50000" class="w-full p-3 rounded-md form-input"></div>
+                            <div><label for="nonRefundableDeposit" class="block text-sm font-medium themed-text mb-2">Non-Refundable Deposit</label><input type="number" id="nonRefundableDeposit" placeholder="e.g., 10000" class="w-full p-3 rounded-md form-input"></div>
+                        </div>
+                         <!-- Step 4: Rent Type -->
+                        <div id="calc-step-4" class="calc-step">
+                            <label class="block text-xl font-semibold themed-heading mb-4 text-center">Is the rent fixed or varying?</label>
+                            <div class="radio-group flex justify-center gap-4">
+                                <input type="radio" id="rentTypeFixed" name="rentType" value="fixed" checked><label for="rentTypeFixed">Fixed Rent</label>
+                                <input type="radio" id="rentTypeVarying" name="rentType" value="varying"><label for="rentTypeVarying">Varying Rent</label>
+                            </div>
+                        </div>
+                        <!-- Step 5: Rent Amount -->
+                        <div id="calc-step-5" class="calc-step">
+                            <div id="fixedRentSection">
+                                <label for="rentAmount" class="block text-xl font-semibold themed-heading mb-4 text-center">What is the fixed monthly rent?</label>
+                                <input type="number" id="rentAmount" placeholder="e.g., 15000" class="w-full p-3 rounded-md form-input text-center">
+                            </div>
+                            <div id="varyingRentSection" class="hidden">
+                                <label class="block text-xl font-semibold themed-heading mb-4 text-center">Enter the rent for each period</label>
+                                <div id="varyingRentContainer" class="space-y-4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div id="calc-navigation" class="mt-8 flex justify-between items-center">
+                        <button id="calc-prev-btn" class="themed-text hover:themed-heading transition-colors opacity-50" disabled>&larr; Back</button>
+                        <button id="calc-next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors">Next &rarr;</button>
+                        <button id="calculateBtn" class="bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-3 px-10 rounded-full text-lg glow-on-hover hidden">Calculate</button>
+                    </div>
+                    
+                    <div id="results" class="mt-10 hidden">
+                        <!-- Results will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== About Us Section ===== -->
+        <section id="about" class="py-20 sm:py-28 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up"><h3 class="text-4xl font-bold tracking-tight themed-heading">Integrity, Efficiency, and Client-Centric Service</h3><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-4 rounded-full"></div></div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 service-card p-8" data-aos="fade-right"><h4 class="text-2xl font-bold themed-heading mb-4">About Reva Enterprises</h4><p class="text-lg leading-relaxed themed-text-secondary">At Reva Enterprises, we are dedicated to simplifying the complexities of legal documentation. Founded on the principles of integrity, efficiency, and client-centric service, our mission is to provide accessible and reliable legal support to individuals and businesses. Our experienced team ensures that every document is handled with the utmost professionalism, giving you peace of mind and the legal standing you require.</p></div>
+                    <div class="space-y-8">
+                        <div class="service-card p-8" data-aos="fade-left"><h4 class="text-2xl font-bold themed-heading mb-4">Our Service Areas</h4><p class="themed-text-secondary leading-relaxed text-sm">PUNE | MUMBAI | THANE | NAGPUR | NASHIK | AURANGABAD | KOLHAPUR | SOLAPUR | AMRAVATI | SATARA</p></div>
+                        <div class="privacy-card p-8 rounded-2xl" data-aos="fade-left" data-aos-delay="100"><div class="content"><h4 class="text-2xl font-bold themed-heading mb-4">Our Privacy Pledge</h4><p class="themed-text-secondary text-sm">Your privacy is our paramount responsibility. Any data shared with us is used exclusively for fulfilling the requested legal services. We do not utilize your data for any promotional activities or third-party use. All information is handled with strict confidentiality and is not retained on any server beyond the necessary processing period.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Contact Section / Footer ===== -->
+        <footer id="contact" class="themed-bg-tertiary border-t themed-border">
+             <canvas id="waterfall-background"></canvas>
+            <div class="contact-content text-center" data-aos="fade-up">
+                <div class="contact-card">
+                    <h4 class="text-2xl font-bold themed-heading">Get in Touch</h4>
+                    <p class="themed-text-secondary mt-2">Ready to start? Contact us for a consultation.</p>
+                    <div class="mt-6">
+                        <a href="mailto:contact@revaenterprises.com" class="text-lg font-semibold gradient-text">contact@revaenterprises.com</a>
+                    </div>
+                </div>
+                <p class="text-gray-500 mt-10 text-sm">&copy; 2024 Reva Enterprises. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- IMMERSIVE SERVICES PAGE -->
+    <div id="servicesPage" class="page-view p-6 sm:p-10">
+        <div class="container mx-auto">
+            <button id="closeServicesPageBtn" class="absolute top-6 right-6 themed-text hover:themed-heading transition-colors z-10"><i data-lucide="x-circle" class="w-8 h-8"></i></button>
+            <div class="text-center mb-16" data-aos="fade-in" data-aos-parent="#servicesPage">
+                <h3 class="text-5xl font-extrabold tracking-tight shimmer-glow">Our Core Legal Services</h3>
+                <p class="mt-4 text-lg max-w-2xl mx-auto themed-text-secondary">We provide a comprehensive suite of legal documentation services to meet all your needs.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="rentAgreementCard" class="service-card cursor-pointer" data-aos="fade-up" data-aos-parent="#servicesPage" data-aos-delay="100"><div class="bg-blue-500/20 w-16 h-16 rounded-xl flex items-center justify-center mb-6"><i data-lucide="file-signature" class="w-8 h-8 text-blue-300"></i></div><h4 class="text-2xl font-bold themed-heading mb-3">Registered Rent Agreements</h4><p class="themed-text-secondary">Legally binding rent agreements, registered online. Click to start.</p></div>
+                <div class="service-card" data-aos="fade-up" data-aos-parent="#servicesPage" data-aos-delay="200"><div class="bg-purple-500/20 w-16 h-16 rounded-xl flex items-center justify-center mb-6"><i data-lucide="stamp" class="w-8 h-8 text-purple-300"></i></div><h4 class="text-2xl font-bold themed-heading mb-3">Notary & Affidavits</h4><p class="themed-text-secondary">Quick and reliable notary services for all your important documents.</p></div>
+                <div class="service-card" data-aos="fade-up" data-aos-parent="#servicesPage" data-aos-delay="300"><div class="bg-green-500/20 w-16 h-16 rounded-xl flex items-center justify-center mb-6"><i data-lucide="home" class="w-8 h-8 text-green-300"></i></div><h4 class="text-2xl font-bold themed-heading mb-3">Property Sale Deeds</h4><p class="themed-text-secondary">Expert drafting and execution for smooth ownership transfer.</p></div>
+                <div class="service-card" data-aos="fade-up" data-aos-parent="#servicesPage" data-aos-delay="400"><div class="bg-pink-500/20 w-16 h-16 rounded-xl flex items-center justify-center mb-6"><i data-lucide="gift" class="w-8 h-8 text-pink-300"></i></div><h4 class="text-2xl font-bold themed-heading mb-3">Gift Deeds</h4><p class="themed-text-secondary">Securely transfer property ownership to loved ones without any money exchange.</p></div>
+                <div class="service-card" data-aos="fade-up" data-aos-parent="#servicesPage" data-aos-delay="500"><div class="bg-indigo-500/20 w-16 h-16 rounded-xl flex items-center justify-center mb-6"><i data-lucide="scroll-text" class="w-8 h-8 text-indigo-300"></i></div><h4 class="text-2xl font-bold themed-heading mb-3">Will & Testament Drafting</h4><p class="themed-text-secondary">Ensure your assets are distributed according to your wishes with a legally sound will.</p></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rent Agreement Modal -->
+    <div id="rentAgreementModal" class="modal-overlay">
+        <div class="modal-content relative">
+            <button id="closeModalBtn" class="absolute top-4 right-4 themed-text-secondary hover:themed-heading transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <div id="modalStep1"><h3 class="text-2xl font-bold text-center themed-heading mb-2">Start Your Rent Agreement</h3><p class="text-center themed-text-secondary mb-8">Please tell us who you are.</p><div class="flex flex-col md:flex-row gap-4"><button id="selectOwnerBtn" class="flex-1 p-6 service-card text-center"><i data-lucide="user-check" class="w-10 h-10 mx-auto mb-3 text-blue-400"></i><span class="text-lg font-semibold themed-heading">I am the Owner</span></button><button id="selectTenantBtn" class="flex-1 p-6 service-card text-center"><i data-lucide="users" class="w-10 h-10 mx-auto mb-3 text-purple-400"></i><span class="text-lg font-semibold themed-heading">I am the Tenant</span></button></div></div>
+            <div id="ownerForm" class="hidden"><h3 class="text-2xl font-bold text-center themed-heading mb-6">Owner Information</h3><form class="space-y-4"><div class="flex gap-4"><input type="text" placeholder="First Name" class="w-full p-3 rounded-md form-input"><input type="text" placeholder="Last Name" class="w-full p-3 rounded-md form-input"></div><input type="number" placeholder="Age" class="w-full p-3 rounded-md form-input"><input type="text" placeholder="Property address for biometrics" class="w-full p-3 rounded-md form-input"><input type="tel" placeholder="Phone Number" class="w-full p-3 rounded-md form-input"><input type="email" placeholder="Email Address" class="w-full p-3 rounded-md form-input"><div><p class="text-sm font-medium themed-text mb-2">Will all parties be present at the same location?</p><div class="radio-group flex gap-4"><input type="radio" id="ownerSameLocYes" name="ownerSameLoc" value="yes" checked><label for="ownerSameLocYes">Yes</label><input type="radio" id="ownerSameLocNo" name="ownerSameLoc" value="no"><label for="ownerSameLocNo">No</label></div></div><button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-10 rounded-full text-lg glow-on-hover">Submit Details</button></form></div>
+            <div id="tenantForm" class="hidden"><h3 class="text-2xl font-bold text-center themed-heading mb-6">Tenant Information</h3><form class="space-y-4"><div class="flex gap-4"><input type="text" placeholder="First Name" class="w-full p-3 rounded-md form-input"><input type="text" placeholder="Last Name" class="w-full p-3 rounded-md form-input"></div><input type="text" placeholder="Address for biometrics" class="w-full p-3 rounded-md form-input"><input type="tel" placeholder="Phone Number" class="w-full p-3 rounded-md form-input"><input type="email" placeholder="Email Address" class="w-full p-3 rounded-md form-input"><div><p class="text-sm font-medium themed-text mb-2">Can the owner meet at the same location?</p><div class="radio-group flex gap-4"><input type="radio" id="tenantSameLocYes" name="tenantSameLoc" value="yes" checked><label for="tenantSameLocYes">Yes</label><input type="radio" id="tenantSameLocNo" name="tenantSameLoc" value="no"><label for="tenantSameLocNo">No</label></div></div><button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-10 rounded-full text-lg glow-on-hover">Submit Details</button></form></div>
+            <div id="successMessage" class="hidden text-center"><div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6"><i data-lucide="check-circle-2" class="w-12 h-12 text-green-400"></i></div><h3 class="text-2xl font-bold themed-heading mb-3">Thank You!</h3><p class="themed-text-secondary">Your details have been submitted successfully. Our staff will contact you shortly to proceed.</p></div>
+        </div>
+    </div>
+
+    <!-- Chatbot "Buddie" Widget -->
+    <div id="buddie-widget">
+        <div id="buddie-chat-window">
+            <div class="buddie-header">
+                <h3 class="font-bold themed-heading">Buddie</h3>
+                <button id="buddie-close" class="themed-text-secondary hover:themed-heading"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="buddie-messages"></div>
+            <div class="buddie-footer">
+                <form id="buddie-input-form" class="flex items-center">
+                    <input type="text" id="buddie-input" class="buddie-input flex-grow" placeholder="Ask a general question...">
+                    <button type="submit" class="p-2 themed-text hover:themed-heading">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <button id="buddie-toggle">
+            <i data-lucide="bot" class="w-8 h-8 text-white" id="buddie-icon-open"></i>
+            <i data-lucide="x" class="w-8 h-8 text-white hidden" id="buddie-icon-close"></i>
+        </button>
+    </div>
+
+    <!-- Game Hint/Explanation Modal -->
+    <div id="gameModal" class="modal-overlay">
+        <div id="gameModalContent" class="modal-content text-center">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+    
+    <!-- LEGAL PUZZLE GAME PAGE -->
+    <div id="gamePage" class="page-view p-6 sm:p-10">
+        <div class="container mx-auto max-w-4xl">
+            <button id="closeGamePageBtn" class="absolute top-6 right-6 themed-text hover:themed-heading transition-colors z-10"><i data-lucide="x-circle" class="w-8 h-8"></i></button>
+            
+            <div id="game-start-screen" class="text-center flex flex-col items-center justify-center h-full min-h-[80vh]">
+                <h2 class="text-5xl font-extrabold tracking-tight shimmer-glow">Legal Eagle Challenge</h2>
+                <p class="mt-4 text-lg max-w-2xl mx-auto themed-text-secondary">Test your knowledge of legal agreements and clauses. See if you have what it takes to become a Legal Eagle!</p>
+                <button id="startGameBtn" class="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-10 rounded-full text-lg breathing-button hover:scale-105">Start the Challenge</button>
+            </div>
+
+            <div id="game-play-screen" class="hidden">
+                <!-- Game Header -->
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <span class="text-sm themed-text-secondary">Level</span>
+                        <p id="level-display" class="text-2xl font-bold themed-heading">1 / 5</p>
+                    </div>
+                    <div>
+                        <span class="text-sm themed-text-secondary">Legal Acumen</span>
+                        <p id="iq-display" class="text-2xl font-bold themed-heading text-right">100</p>
+                    </div>
+                </div>
+
+                <!-- Game Content -->
+                <div id="game-content" class="service-card p-8">
+                    <p id="game-question" class="text-2xl font-semibold themed-heading mb-8 text-center" style="opacity: 0;"></p>
+                    <div id="game-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Options will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Hint Button -->
+                <div class="text-center mt-6">
+                    <button id="hintBtn" class="flex items-center gap-2 mx-auto themed-text-secondary hover:themed-text transition-colors text-sm">
+                        <i data-lucide="lightbulb" class="w-4 h-4"></i> Need a hint from Buddie?
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Lucide Icons and Animate-On-Scroll
+        lucide.createIcons();
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+
+            // --- Theme Switcher Logic ---
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const html = document.documentElement;
+
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (theme === 'light') {
+                    if (sunIcon) sunIcon.classList.remove('hidden');
+                    if (moonIcon) moonIcon.classList.add('hidden');
+                } else {
+                    if (sunIcon) sunIcon.classList.add('hidden');
+                    if (moonIcon) moonIcon.classList.remove('hidden');
+                }
+            };
+            if(themeSwitcher) {
+                themeSwitcher.addEventListener('click', () => {
+                    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                });
+            }
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+            // --- Fee Calculator Logic (GAMIFIED & MASTER VERSION) ---
+            const calculatorSteps = document.getElementById('calculator-steps');
+            if(calculatorSteps) {
+                const steps = calculatorSteps.querySelectorAll('.calc-step');
+                const progressBar = document.getElementById('calc-progress-bar');
+                const prevBtn = document.getElementById('calc-prev-btn');
+                const nextBtn = document.getElementById('calc-next-btn');
+                const calculateBtn = document.getElementById('calculateBtn');
+                const calcNav = document.getElementById('calc-navigation');
+                let currentStep = 0;
+
+                const updateCalculatorView = () => {
+                    steps.forEach((step, index) => {
+                        step.classList.toggle('active', index === currentStep);
+                    });
+                    progressBar.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+                    prevBtn.disabled = currentStep === 0;
+                    prevBtn.classList.toggle('opacity-50', currentStep === 0);
+                    
+                    if (currentStep === steps.length - 1) {
+                        nextBtn.classList.add('hidden');
+                        calculateBtn.classList.remove('hidden');
+                    } else {
+                        nextBtn.classList.remove('hidden');
+                        calculateBtn.classList.add('hidden');
+                    }
+                };
+                
+                nextBtn.addEventListener('click', () => {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        updateCalculatorView();
+                    }
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        updateCalculatorView();
+                    }
+                });
+                
+                document.querySelectorAll('input[name="rentType"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const isVarying = e.target.value === 'varying';
+                        document.getElementById('fixedRentSection').classList.toggle('hidden', isVarying);
+                        document.getElementById('varyingRentSection').classList.toggle('hidden', !isVarying);
+                        if (isVarying) generateVaryingRentFields();
+                    });
+                });
+
+                const varyingRentContainer = document.getElementById('varyingRentContainer');
+                const periodEl = document.getElementById('period');
+                const generateVaryingRentFields = () => {
+                    varyingRentContainer.innerHTML = '';
+                    const totalMonths = parseInt(periodEl.value) || 0;
+                    if (totalMonths > 0) {
+                        createVaryingRentRow(1, totalMonths, true);
+                        addPeriodButton();
+                    }
+                };
+                const createVaryingRentRow = (from, to, isFirst = false) => {
+                    const row = document.createElement('div');
+                    row.className = 'varying-row grid grid-cols-12 gap-2 items-center';
+                    row.innerHTML = `
+                        <div class="col-span-5 flex items-center gap-2">
+                            <span class="themed-text text-sm">Mths</span>
+                            <input type="number" value="${from}" class="w-16 p-2 rounded-md form-input text-center from-month" readonly>
+                            <span class="themed-text text-sm">to</span>
+                            <input type="number" value="${to}" class="w-16 p-2 rounded-md form-input text-center to-month">
+                        </div>
+                        <div class="col-span-5">
+                            <input type="number" placeholder="Rent/mth" class="w-full p-2 rounded-md form-input rent-input">
+                        </div>
+                        <div class="col-span-2 flex justify-end">
+                            ${!isFirst ? '<button class="remove-period-btn p-2 text-red-400 hover:text-red-300"><i data-lucide="trash-2" class="w-5 h-5"></i></button>' : ''}
+                        </div>
+                    `;
+                    varyingRentContainer.insertBefore(row, varyingRentContainer.querySelector('.add-period-btn-container'));
+                    lucide.createIcons();
+                };
+                const addPeriodButton = () => {
+                    const btnContainer = document.createElement('div');
+                    btnContainer.className = 'add-period-btn-container pt-2';
+                    btnContainer.innerHTML = `<button id="addPeriodBtn" class="flex items-center gap-2 text-sm themed-text hover:themed-heading transition-colors"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Period</button>`;
+                    varyingRentContainer.appendChild(btnContainer);
+                    lucide.createIcons();
+                };
+                varyingRentContainer.addEventListener('click', (e) => {
+                    if (e.target.closest('#addPeriodBtn')) {
+                        const rows = varyingRentContainer.querySelectorAll('.varying-row');
+                        const lastRow = rows[rows.length - 1];
+                        const lastToMonthEl = lastRow.querySelector('.to-month');
+                        const lastToMonth = parseInt(lastToMonthEl.value);
+                        const totalMonths = parseInt(periodEl.value);
+                        if (lastToMonth < totalMonths) {
+                            lastToMonthEl.readOnly = true;
+                            createVaryingRentRow(lastToMonth + 1, totalMonths);
+                        }
+                    }
+                    if (e.target.closest('.remove-period-btn')) {
+                        e.target.closest('.varying-row').remove();
+                        const rows = varyingRentContainer.querySelectorAll('.varying-row');
+                        const lastRow = rows[rows.length - 1];
+                        lastRow.querySelector('.to-month').readOnly = false;
+                        lastRow.querySelector('.to-month').value = periodEl.value;
+                    }
+                });
+
+                if (calculateBtn) {
+                    calculateBtn.addEventListener('click', () => {
+                        const resultsDiv = document.getElementById('results');
+                        const propertyLocationEl = document.getElementById('propertyLocation');
+                        const depositAmountEl = document.getElementById('depositAmount');
+                        const nonRefundableDepositEl = document.getElementById('nonRefundableDeposit');
+                        const rentAmountEl = document.getElementById('rentAmount');
+                        
+                        const location = propertyLocationEl.value;
+                        const deposit = parseFloat(depositAmountEl.value) || 0;
+                        const nonRefundableDeposit = parseFloat(nonRefundableDepositEl.value) || 0;
+                        const months = parseInt(periodEl.value) || 0;
+                        
+                        let totalRent = 0;
+                        if (document.getElementById('rentTypeVarying').checked) {
+                            const varyingRows = document.querySelectorAll('.varying-row');
+                            varyingRows.forEach(row => {
+                                const from = parseInt(row.querySelector('.from-month').value);
+                                const to = parseInt(row.querySelector('.to-month').value);
+                                const rent = parseFloat(row.querySelector('.rent-input').value) || 0;
+                                const duration = (to - from + 1);
+                                if (duration > 0) totalRent += rent * duration;
+                            });
+                        } else {
+                            const rent = parseFloat(rentAmountEl.value) || 0;
+                            totalRent = rent * months;
+                        }
+
+                        if (months <= 0) {
+                            alert("Please enter a valid agreement period.");
+                            return;
+                        }
+                        
+                        const formatAsCurrency = (amount) => `₹${amount.toLocaleString('en-IN')}`;
+                        const totalValueForStampDuty = totalRent + nonRefundableDeposit + (deposit * 0.10);
+                        const stampDuty = Math.ceil(totalValueForStampDuty * 0.0025);
+                        const registrationFee = location === 'urban' ? 1000 : 500;
+                        const dhcCharges = 300;
+                        const serviceCharges = 1000;
+                        const originalServiceCharges = Math.ceil(serviceCharges / 0.9);
+                        const totalGovCharges = stampDuty + registrationFee + dhcCharges;
+                        const grandTotal = totalGovCharges + serviceCharges;
+
+                        resultsDiv.innerHTML = `
+                            <div class="text-center">
+                                <i data-lucide="award" class="w-16 h-16 mx-auto text-yellow-400"></i>
+                                <h4 class="text-2xl font-bold text-center mt-4 mb-6 themed-heading">Congratulations! Calculation Complete.</h4>
+                            </div>
+                            <div class="space-y-4 max-w-md mx-auto">
+                                <div class="flex justify-between items-center themed-text-secondary"><span>Stamp Duty</span><span class="font-medium themed-text">${formatAsCurrency(stampDuty)}</span></div>
+                                <div class="flex justify-between items-center themed-text-secondary"><span>Registration Fee</span><span class="font-medium themed-text">${formatAsCurrency(registrationFee)}</span></div>
+                                <div class="flex justify-between items-center themed-text-secondary"><span>DHC Charges</span><span class="font-medium themed-text">${formatAsCurrency(dhcCharges)}</span></div>
+                                <div class="border-t themed-border my-2"></div>
+                                <div class="flex justify-between items-center themed-heading font-semibold"><span>Total Government Charges</span><span class="text-lg">${formatAsCurrency(totalGovCharges)}</span></div>
+                                <div class="flex justify-between items-center themed-text-secondary pt-4">
+                                    <span>Our Service Charges</span>
+                                    <div class="text-right">
+                                        <span class="line-through themed-text-secondary text-sm">${formatAsCurrency(originalServiceCharges)}</span>
+                                        <span class="font-medium themed-text block">${formatAsCurrency(serviceCharges)}</span>
+                                    </div>
+                                </div>
+                                 <div class="text-right text-xs text-green-400 font-semibold -mt-2">10% Discount Applied!</div>
+                            </div>
+                            <div class="mt-6 pt-6 border-t-2 border-dashed themed-border"><div class="flex justify-between items-center max-w-md mx-auto"><span class="text-xl font-bold themed-heading">Grand Total</span><span class="text-3xl font-extrabold shimmer-glow">${formatAsCurrency(grandTotal)}</span></div></div>
+                        `;
+                        lucide.createIcons();
+                        
+                        calculatorSteps.classList.add('hidden');
+                        calcNav.classList.add('hidden');
+                        resultsDiv.classList.remove('hidden');
+                    });
+                }
+                updateCalculatorView();
+            }
+
+            // --- Services Page & Modal Logic ---
+            const servicesPage = document.getElementById('servicesPage');
+            const exploreServicesBtn = document.getElementById('exploreServicesBtn');
+            const navServicesLink = document.getElementById('navServicesLink');
+            const closeServicesPageBtn = document.getElementById('closeServicesPageBtn');
+            const rentAgreementCard = document.getElementById('rentAgreementCard');
+            const modal = document.getElementById('rentAgreementModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalStep1 = document.getElementById('modalStep1');
+            const ownerFormDiv = document.getElementById('ownerForm');
+            const tenantFormDiv = document.getElementById('tenantForm');
+            const successMessageDiv = document.getElementById('successMessage');
+            const selectOwnerBtn = document.getElementById('selectOwnerBtn');
+            const selectTenantBtn = document.getElementById('selectTenantBtn');
+            
+            const handleFormSubmit = (e) => { e.preventDefault(); ownerFormDiv.classList.add('hidden'); tenantFormDiv.classList.add('hidden'); successMessageDiv.classList.remove('hidden'); };
+            
+            if(ownerFormDiv) {
+                const ownerForm = ownerFormDiv.querySelector('form');
+                 if(ownerForm) ownerForm.addEventListener('submit', handleFormSubmit);
+            }
+            if(tenantFormDiv) {
+                const tenantForm = tenantFormDiv.querySelector('form');
+                if(tenantForm) tenantForm.addEventListener('submit', handleFormSubmit);
+            }
+
+
+            const openServicesPage = (e) => { e.preventDefault(); servicesPage.classList.add('active'); body.classList.add('overflow-hidden'); setTimeout(() => AOS.refresh(), 50); };
+            const closeServicesPage = () => { servicesPage.classList.remove('active'); if (!modal.classList.contains('active')) { body.classList.remove('overflow-hidden'); } };
+            const openModal = () => { modal.classList.add('active'); body.classList.add('overflow-hidden'); };
+            const closeModal = () => {
+                modal.classList.remove('active');
+                if (!servicesPage.classList.contains('active')) { body.classList.remove('overflow-hidden'); }
+                setTimeout(() => {
+                    if (modalStep1) modalStep1.classList.remove('hidden');
+                    if (ownerFormDiv) ownerFormDiv.classList.add('hidden');
+                    if (tenantFormDiv) tenantFormDiv.classList.add('hidden');
+                    if (successMessageDiv) successMessageDiv.classList.add('hidden');
+                }, 400);
+            };
+
+            if(exploreServicesBtn) exploreServicesBtn.addEventListener('click', openServicesPage);
+            if(navServicesLink) navServicesLink.addEventListener('click', openServicesPage);
+            if(closeServicesPageBtn) closeServicesPageBtn.addEventListener('click', closeServicesPage);
+            if(rentAgreementCard) rentAgreementCard.addEventListener('click', openModal);
+            if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            if(selectOwnerBtn) selectOwnerBtn.addEventListener('click', () => { modalStep1.classList.add('hidden'); ownerFormDiv.classList.remove('hidden'); });
+            if(selectTenantBtn) selectTenantBtn.addEventListener('click', () => { modalStep1.classList.add('hidden'); tenantFormDiv.classList.remove('hidden'); });
+            
+            // --- Chatbot "Buddie" Logic ---
+            const contactBtn = document.getElementById('contactBtn');
+            const buddieWidget = document.getElementById('buddie-widget');
+            const buddieToggle = document.getElementById('buddie-toggle');
+            const buddieClose = document.getElementById('buddie-close');
+            const buddieIconOpen = document.getElementById('buddie-icon-open');
+            const buddieIconClose = document.getElementById('buddie-icon-close');
+            const messagesContainer = document.getElementById('buddie-messages');
+            const buddieInputForm = document.getElementById('buddie-input-form');
+            const buddieInput = document.getElementById('buddie-input');
+            let buddieTimeout;
+
+            const initialMessages = [
+                { type: 'greeting', text: "Hey there! I'm Buddie. Think of me as your friendly legal sidekick. What's on your mind? You can ask me a question or pick an option below!" },
+                { type: 'options', options: [
+                    { text: 'Tell me about your services', action: 'services', icon: 'briefcase' },
+                    { text: 'Help me with the calculator', action: 'calculator', icon: 'calculator' },
+                    { text: 'I want to play the Legal Game', action: 'game', icon: 'gamepad-2' },
+                    { text: 'What is your privacy policy?', action: 'privacy', icon: 'shield' }
+                ]}
+            ];
+
+            const showInitialMessages = () => {
+                messagesContainer.innerHTML = '';
+                let delay = 0;
+                initialMessages.forEach(msg => {
+                    setTimeout(() => {
+                        if (msg.type === 'greeting') {
+                            appendBuddieMessage(msg.text);
+                        } else if (msg.type === 'options') {
+                            const optionsEl = document.createElement('div');
+                            optionsEl.className = 'buddie-message buddie-options space-y-2';
+                            msg.options.forEach(opt => {
+                                const button = document.createElement('button');
+                                button.className = 'flex items-center gap-3 w-full themed-text';
+                                button.innerHTML = `<i data-lucide="${opt.icon}" class="w-5 h-5 text-blue-400"></i><span class="font-semibold">${opt.text}</span>`;
+                                button.addEventListener('click', () => handleBuddieAction(opt.action));
+                                optionsEl.appendChild(button);
+                            });
+                            messagesContainer.appendChild(optionsEl);
+                            lucide.createIcons();
+                        }
+                         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, delay);
+                    delay += 500;
+                });
+            };
+
+            const handleBuddieAction = (action) => {
+                appendUserMessage(`Tell me about: ${action}`);
+                let response = "";
+                switch (action) {
+                    case 'services':
+                        response = "Of course! We offer a bunch of super-helpful legal services like Registered Rent Agreements, Notary, Sale Deeds, and more. If you're looking to make something official, we're your pals! You can see everything by clicking the 'Services' button in the main menu.";
+                        break;
+                    case 'calculator':
+                        response = "Ah, the amazing calculator! It's like a magic 8-ball for fees. Just answer a few simple questions in the 'Stamp Duty and Registration Calculator' section, and it'll tell you the estimated government charges and our super-reasonable service fee. No scary math required!";
+                        break;
+                    case 'game':
+                        response = "Ready to become a Legal Eagle? Awesome! Just click the 'Game' button in the top menu to start the challenge. It’s a fun way to test your legal smarts. Don't worry, it's more fun than a barrel of lawyers!";
+                        break;
+                    case 'privacy':
+                        response = "Your secrets are safe with us! Our privacy policy is simple: we only use your info to do the job you hired us for. No spam, no selling your data, nothing sneaky. We're like a vault, but friendlier. You can read the full pledge in the 'About Us' section.";
+                        break;
+                }
+                appendBuddieMessage(response);
+            };
+            
+            const appendBuddieMessage = (text, sources = []) => {
+                const messageEl = document.createElement('div');
+                messageEl.className = 'buddie-message';
+                let html = `<p class="themed-text">${text.replace(/\n/g, '<br>')}</p>`;
+
+                if (sources.length > 0) {
+                    html += `<div class="mt-2 pt-2 border-t themed-border text-xs"><p class="font-bold themed-text mb-1">Sources:</p><ol class="list-decimal list-inside">`;
+                    sources.forEach(source => {
+                        html += `<li><a href="${source.uri}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">${source.title}</a></li>`;
+                    });
+                    html += `</ol></div>`;
+                }
+
+                messageEl.innerHTML = html;
+                messagesContainer.appendChild(messageEl);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            };
+
+            const appendUserMessage = (text) => {
+                const messageEl = document.createElement('div');
+                messageEl.className = 'buddie-message user-message';
+                messageEl.innerHTML = `<p>${text}</p>`;
+                messagesContainer.appendChild(messageEl);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            };
+
+            const askBuddieGemini = async (query) => {
+                appendUserMessage(query);
+                appendBuddieMessage("Buddie is thinking...");
+
+                const apiKey = ""; // Leave as-is
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const systemPrompt = "You are a helpful, funny, and friendly AI assistant for Reva Enterprises, a legal services company. Your name is Buddie. Your goal is to make legal topics less intimidating and more approachable. Provide informative answers to general legal questions. You MUST NOT provide any legal advice. Always state clearly that you are an AI assistant and the user should consult with a qualified professional for legal advice concerning their specific situation. Keep answers concise and use a fun, friendly, and slightly humorous tone. For example, you can use analogies to explain complex topics.";
+
+                const payload = {
+                    contents: [{ parts: [{ text: query }] }],
+                    tools: [{ "google_search": {} }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
+                    const result = await response.json();
+                    
+                    messagesContainer.removeChild(messagesContainer.lastChild); // Remove "thinking..." message
+
+                    const candidate = result.candidates?.[0];
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const text = candidate.content.parts[0].text;
+                        let sources = [];
+                        const groundingMetadata = candidate.groundingMetadata;
+                        if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                            sources = groundingMetadata.groundingAttributions
+                                .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                                .filter(source => source.uri && source.title);
+                        }
+                        appendBuddieMessage(text, sources);
+                    } else {
+                        appendBuddieMessage("Whoops, my circuits got a little crossed there! I couldn't find an answer for that. Could you try asking in a different way?");
+                    }
+                } catch (error) {
+                    messagesContainer.removeChild(messagesContainer.lastChild);
+                    appendBuddieMessage("Uh oh! My connection to the knowledge-verse seems to be on the fritz. Please try again in a little bit.");
+                    console.error("Gemini API Error:", error);
+                }
+            };
+
+            if(buddieInputForm) {
+                buddieInputForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const query = buddieInput.value.trim();
+                    if(query) {
+                        askBuddieGemini(query);
+                        buddieInput.value = '';
+                    }
+                });
+            }
+
+            const resetBuddieTimeout = () => {
+                clearTimeout(buddieTimeout);
+                buddieTimeout = setTimeout(() => {
+                    buddieWidget.classList.remove('active');
+                }, 3 * 60 * 1000); // 3 minutes
+            };
+
+
+            if(contactBtn) contactBtn.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                buddieWidget.classList.toggle('active');
+                if (buddieWidget.classList.contains('active')) {
+                    resetBuddieTimeout();
+                } else {
+                    buddieWidget.classList.remove('chat-open');
+                    buddieIconOpen.classList.remove('hidden');
+                    buddieIconClose.classList.add('hidden');
+                    clearTimeout(buddieTimeout);
+                }
+            });
+            if(buddieToggle) buddieToggle.addEventListener('click', () => {
+                resetBuddieTimeout();
+                buddieWidget.classList.toggle('chat-open');
+                buddieIconOpen.classList.toggle('hidden');
+                buddieIconClose.classList.toggle('hidden');
+                if (buddieWidget.classList.contains('chat-open')) { 
+                    showInitialMessages(); 
+                }
+            });
+            if(buddieClose) buddieClose.addEventListener('click', () => {
+                buddieWidget.classList.remove('chat-open');
+                buddieIconOpen.classList.remove('hidden');
+                buddieIconClose.classList.add('hidden');
+                resetBuddieTimeout();
+            });
+            if(buddieWidget) {
+                buddieWidget.addEventListener('click', resetBuddieTimeout);
+                buddieWidget.addEventListener('input', resetBuddieTimeout);
+            }
+
+            // --- Spotlight/Torch effect for Privacy Card ---
+            const privacyCard = document.querySelector('.privacy-card');
+            if (privacyCard) {
+                privacyCard.addEventListener('mousemove', (e) => {
+                    const rect = privacyCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    privacyCard.style.setProperty('--x', `${x}px`);
+                    privacyCard.style.setProperty('--y', `${y}px`);
+                });
+            }
+
+            // --- Legal Puzzle Game Logic ---
+            const gamePage = document.getElementById('gamePage');
+            const navGameLink = document.getElementById('navGameLink');
+            const closeGamePageBtn = document.getElementById('closeGamePageBtn');
+            const startGameBtn = document.getElementById('startGameBtn');
+            const gameStartScreen = document.getElementById('game-start-screen');
+            const gamePlayScreen = document.getElementById('game-play-screen');
+            
+            const levelDisplay = document.getElementById('level-display');
+            const iqDisplay = document.getElementById('iq-display');
+            const gameQuestion = document.getElementById('game-question');
+            const gameOptions = document.getElementById('game-options');
+            const hintBtn = document.getElementById('hintBtn');
+            const gameModal = document.getElementById('gameModal');
+            const gameModalContent = document.getElementById('gameModalContent');
+
+            const allQuestions = [
+                { question: "What is the standard duration for a Leave and License agreement in Maharashtra to avoid mandatory registration?", options: ["12 Months", "6 Months", "11 Months", "24 Months"], answer: 2, hint: "It's one month less than a full year to fall under a different legal category.", explanation: "Agreements of 12 months or more require mandatory registration. Therefore, 11-month agreements are common practice to bypass this." },
+                { question: "Which party is typically responsible for paying the Stamp Duty on a rent agreement?", options: ["The Landlord", "The Tenant", "Split 50/50", "The Government"], answer: 1, hint: "Think about who is gaining the right to use the property.", explanation: "By convention and law, the tenant, who is the lessee, is responsible for paying the stamp duty as they are the one receiving the benefit of the lease." },
+                { question: "A 'Notary' primarily serves to do what?", options: ["Give legal advice", "Draft the contract", "Represent you in court", "Verify the identity of signers"], answer: 3, hint: "Their official stamp is a seal of authenticity.", explanation: "A Notary Public's main role is to act as an impartial witness to deter fraud, verifying the identity of individuals signing important documents." },
+                { question: "What does 'Force Majeure' mean in a contract?", options: ["The main objective", "An early termination clause", "An unforeseeable 'Act of God'", "A penalty for non-payment"], answer: 2, hint: "This clause covers events outside of anyone's control, like a natural disaster.", explanation: "'Force Majeure' is a clause that frees both parties from liability if an extraordinary event (like a war, strike, or natural disaster) prevents one or both parties from fulfilling their obligations." },
+                { question: "What is a 'Sale Deed'?", options: ["An agreement to sell in the future", "A proof of payment", "The final document transferring property ownership", "A loan document"], answer: 2, hint: "This is the final, most important document when you buy a house.", explanation: "A Sale Deed is the core legal document that acts as proof of sale and the legal transfer of ownership of a property from the seller to the buyer." },
+                { question: "In a rent agreement, what is the 'Lock-in Period'?", options: ["Time to change the locks", "Period when neither party can terminate", "Time the landlord can enter", "A security feature"], answer: 1, hint: "It 'locks' both parties into the agreement for a set time.", explanation: "The Lock-in Period is a minimum duration during which neither the tenant nor the landlord can terminate the rental agreement, providing stability for both." },
+                { question: "What is an 'Affidavit'?", options: ["A type of loan", "A court order", "A written statement confirmed by oath", "A rental contract"], answer: 2, hint: "You swear that this written statement is true.", explanation: "An affidavit is a sworn written statement made under oath or affirmation before a Notary Public or other authorized officer." },
+                { question: "What does 'Indemnity Clause' mean?", options: ["A promise to compensate for potential loss", "A clause for early renewal", "A list of property damages", "A non-disclosure agreement"], answer: 0, hint: "It's like saying, 'If you get in trouble because of me, I'll cover your costs.'", explanation: "An indemnity clause is a contractual promise by one party to hold the other party harmless and cover any potential losses or damages." },
+                { question: "A 'Gift Deed' is used to transfer property without what?", options: ["Witnesses", "Registration", "A lawyer", "Financial consideration (money)"], answer: 3, hint: "It's a gift, so no payment is exchanged.", explanation: "A Gift Deed is a legal instrument used to transfer ownership of property from one person to another without any payment or exchange of money." },
+                { question: "What is the purpose of 'Witnesses' in an agreement?", options: ["To negotiate terms", "To provide legal advice", "To confirm the signatures are genuine", "To pay the fees"], answer: 2, hint: "They are there to see the signing happen.", explanation: "Witnesses attest to the fact that they observed the parties signing the agreement, adding a layer of authenticity and verification to the document." },
+                { question: "'Arbitration' is a method of...", options: ["Suing someone in high court", "Resolving disputes outside of court", "Cancelling a contract", "Drafting a new law"], answer: 1, hint: "It's like having a private judge to settle an argument.", explanation: "Arbitration is a form of alternative dispute resolution (ADR) where a neutral third party (an arbitrator) makes a binding decision to resolve a dispute, avoiding a formal court case." },
+                { question: "What is a 'Power of Attorney'?", options: ["A document giving someone electricity rights", "A legal document authorizing someone to act on your behalf", "The strongest clause in a contract", "A court summons"], answer: 1, hint: "It gives someone the 'power' to be your legal representative.", explanation: "A Power of Attorney (PoA) is a legal document that grants one person the authority to act for another person in specified or all legal or financial matters." },
+                { question: "The 'Security Deposit' in a rent agreement is primarily for...", options: ["The first month's rent", "A party fund for the building", "Covering potential damages by the tenant", "A discount on the rent"], answer: 2, hint: "It provides 'security' for the landlord against property damage.", explanation: "The security deposit is a sum of money held by the landlord to cover any damages to the property caused by the tenant beyond normal wear and tear." },
+                { question: "What does 'Execution of a document' mean?", options: ["Terminating the document", "The proper signing and finalizing of it", "Making a copy of it", "Mailing the document"], answer: 1, hint: "It's the final action to make it official.", explanation: "The 'execution' of a document refers to the process of signing it in accordance with all legal formalities to make it legally valid." },
+                { question: "What is 'Stamp Paper' used for?", options: ["Making the document look official", "A special type of notepad", "Paying a government tax (stamp duty)", "A form of currency"], answer: 2, hint: "It's the physical proof that a tax has been paid on the transaction.", explanation: "Stamp paper is used to collect stamp duty, which is a tax levied by the government on legal documents, making the transaction valid in the eyes of the law." },
+                { question: "A 'Lease Deed' differs from a 'Leave and License' agreement because it...", options: ["Is for a shorter term", "Cannot be registered", "Creates an interest in the property for the tenant", "Is only for commercial properties"], answer: 2, hint: "A lease gives the tenant more rights over the property itself.", explanation: "A lease creates an interest in the property for the tenant, giving them more rights, whereas a license is merely a permission to use the property for a certain period." },
+                { question: "The 'Jurisdiction' clause in a contract specifies...", options: ["The lawyers who can read it", "The language it must be in", "The city/courts that will handle disputes", "The maximum penalty amount"], answer: 2, hint: "It determines which court's 'jurisdiction' or authority applies.", explanation: "The jurisdiction clause establishes which state or city's laws will govern the agreement and where any legal action would be filed if a dispute arises." },
+                { question: "What does it mean to 'attest' a document?", options: ["To write it", "To read it aloud", "To sign as a witness to its execution", "To cancel it"], answer: 2, hint: "It's the formal act of being a witness.", explanation: "To attest a document means to bear witness to its signing and to sign a statement to that effect, confirming the authenticity of the signatures." },
+                { question: "A 'Testament' is another word for...", options: ["An agreement", "A contract", "A Will", "A testimony"], answer: 2, hint: "Last Will and ...", explanation: "A testament is a person's will, especially the part of it that relates to personal property. The full phrase is 'Last Will and Testament'." },
+                { question: "What is the 'Consideration' in a contract?", options: ["Being polite to the other party", "Something of value exchanged between parties", "The time taken to think about the offer", "The main goal of the agreement"], answer: 1, hint: "It's what each side gives, like money for goods.", explanation: "Consideration is a crucial element of any contract. It refers to the value (such as money, goods, or services) that is promised by each party to the other." }
+            ];
+
+            let currentLevel = 0;
+            let iqScore = 100;
+            let shuffledQuestions = [];
+
+            const openGamePage = (e) => { e.preventDefault(); gamePage.classList.add('active'); body.classList.add('overflow-hidden'); };
+            const closeGamePage = () => { gamePage.classList.remove('active'); if (!modal.classList.contains('active') && !servicesPage.classList.contains('active')) { body.classList.remove('overflow-hidden'); } };
+
+            if(navGameLink) navGameLink.addEventListener('click', openGamePage);
+            if(closeGamePageBtn) closeGamePageBtn.addEventListener('click', closeGamePage);
+
+            const shuffleArray = (array) => {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            if(startGameBtn) {
+                 startGameBtn.addEventListener('click', () => {
+                    shuffledQuestions = [...allQuestions];
+                    shuffleArray(shuffledQuestions);
+                    gameStartScreen.classList.add('hidden');
+                    gamePlayScreen.classList.remove('hidden');
+                    currentLevel = 0;
+                    iqScore = 100;
+                    loadLevel(currentLevel);
+                });
+            }
+
+            const loadLevel = (levelIndex) => {
+                const level = shuffledQuestions[levelIndex];
+                levelDisplay.textContent = `${levelIndex + 1} / ${shuffledQuestions.length}`;
+                iqDisplay.textContent = iqScore;
+                
+                gameQuestion.style.opacity = 0;
+                setTimeout(() => {
+                    gameQuestion.textContent = level.question;
+                    gameQuestion.style.transition = 'opacity 0.5s ease';
+                    gameQuestion.style.opacity = 1;
+                }, 100);
+
+                gameOptions.innerHTML = '';
+                level.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const optionBtn = document.createElement('button');
+                        optionBtn.className = 'service-card game-option p-4 text-left';
+                        optionBtn.innerHTML = `<p class="themed-text">${option}</p>`;
+                        optionBtn.addEventListener('click', () => handleAnswer(optionBtn, index, level.answer));
+                        gameOptions.appendChild(optionBtn);
+                    }, 200 + (index * 100));
+                });
+            };
+
+            const handleAnswer = (selectedButton, selectedIndex, correctIndex) => {
+                const optionButtons = gameOptions.querySelectorAll('.game-option');
+                optionButtons.forEach(btn => btn.classList.add('disabled'));
+
+                if (selectedIndex === correctIndex) {
+                    selectedButton.classList.add('correct');
+                    iqScore = Math.min(150, iqScore + 10);
+                     setTimeout(() => showExplanation(shuffledQuestions[currentLevel], true), 1000);
+                } else {
+                    selectedButton.classList.add('incorrect');
+                    optionButtons[correctIndex].classList.add('correct');
+                    iqScore = Math.max(50, iqScore - 5);
+                     setTimeout(() => showExplanation(shuffledQuestions[currentLevel], false), 1000);
+                }
+            };
+            
+            const explainWithGemini = async (explanationText) => {
+                const explanationContent = gameModalContent.querySelector('#explanation-content');
+                explanationContent.innerHTML = `<p class="themed-text-secondary mt-2">✨ Thinking of a simpler way to explain... </p>`;
+
+                const apiKey = ""; // Leave as-is
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const prompt = `Explain the following legal concept in a simple, easy-to-understand way, like you're talking to a friend. Use an analogy if it helps. Concept: "${explanationText}"`;
+                
+                const payload = { contents: [{ parts: [{ text: prompt }] }] };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error('API request failed');
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) {
+                        explanationContent.innerHTML = `<p class="themed-text-secondary mt-2">${text.replace(/\n/g, '<br>')}</p>`;
+                    } else {
+                        explanationContent.innerHTML = `<p class="themed-text-secondary mt-2">Sorry, I couldn't simplify that right now.</p>`;
+                    }
+                } catch (error) {
+                    explanationContent.innerHTML = `<p class="themed-text-secondary mt-2">An error occurred while trying to simplify. Please try again later.</p>`;
+                    console.error("Gemini Game Explanation Error:", error);
+                }
+            };
+
+            const showExplanation = (level, isCorrect) => {
+                gameModalContent.innerHTML = `
+                    <i data-lucide="${isCorrect ? 'check-circle' : 'x-circle'}" class="w-16 h-16 mx-auto ${isCorrect ? 'text-green-400' : 'text-red-400'}"></i>
+                    <h3 class="text-2xl font-bold mt-4 themed-heading">${isCorrect ? 'Correct!' : 'Not Quite'}</h3>
+                    <div id="explanation-content"><p class="themed-text-secondary mt-2">${level.explanation}</p></div>
+                    <div class="mt-4 space-y-2">
+                        <button id="explainAIBtn" class="w-full bg-purple-600/20 text-purple-200 font-semibold py-2 rounded-full hover:bg-purple-600/40 transition-colors">✨ Explain with AI</button>
+                        <a href="#services" class="text-sm text-blue-400 hover:underline pt-2 inline-block">Learn more about our services</a>
+                    </div>
+                    <button id="nextLevelBtn" class="mt-4 w-full bg-blue-600 text-white font-bold py-3 rounded-full">${currentLevel === shuffledQuestions.length - 1 ? 'Finish Game' : 'Next Level'}</button>
+                `;
+                lucide.createIcons();
+                gameModal.classList.add('active');
+                
+                document.getElementById('explainAIBtn').addEventListener('click', () => explainWithGemini(level.explanation));
+
+                document.getElementById('nextLevelBtn').addEventListener('click', () => {
+                    gameModal.classList.remove('active');
+                    currentLevel++;
+                    if (currentLevel < shuffledQuestions.length) {
+                        loadLevel(currentLevel);
+                    } else {
+                        finishGame();
+                    }
+                });
+            };
+
+            const finishGame = () => {
+                gamePlayScreen.classList.add('hidden');
+                gameStartScreen.classList.remove('hidden');
+                gameStartScreen.innerHTML = `
+                    <h2 class="text-5xl font-extrabold tracking-tight shimmer-glow">Challenge Complete!</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto themed-text-secondary">Your final Legal Acumen score is <span class="font-bold text-2xl themed-heading">${iqScore}</span>. You're a true Legal Eagle!</p>
+                    <button id="playAgainBtn" class="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-10 rounded-full text-lg breathing-button hover:scale-105">Play Again</button>
+                `;
+                document.getElementById('playAgainBtn').addEventListener('click', () => {
+                    // Reset to original start screen content
+                    gameStartScreen.innerHTML = `
+                        <h2 class="text-5xl font-extrabold tracking-tight shimmer-glow">Legal Eagle Challenge</h2>
+                        <p class="mt-4 text-lg max-w-2xl mx-auto themed-text-secondary">Test your knowledge of legal agreements and clauses. See if you have what it takes to become a Legal Eagle!</p>
+                        <button id="startGameBtn" class="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-10 rounded-full text-lg breathing-button hover:scale-105">Start the Challenge</button>
+                    `;
+                    document.getElementById('startGameBtn').addEventListener('click', () => {
+                        shuffledQuestions = [...allQuestions];
+                        shuffleArray(shuffledQuestions);
+                        gameStartScreen.classList.add('hidden');
+                        gamePlayScreen.classList.remove('hidden');
+                        currentLevel = 0;
+                        iqScore = 100;
+                        loadLevel(currentLevel);
+                    });
+                });
+            };
+
+            if(hintBtn) hintBtn.addEventListener('click', () => {
+                gameModalContent.innerHTML = `
+                    <i data-lucide="message-circle" class="w-16 h-16 mx-auto text-blue-400"></i>
+                    <h3 class="text-2xl font-bold mt-4 themed-heading">Buddie's Hint</h3>
+                    <p class="themed-text-secondary mt-2">${shuffledQuestions[currentLevel].hint}</p>
+                    <button id="closeHintBtn" class="mt-6 w-full bg-blue-600 text-white font-bold py-3 rounded-full">Got it!</button>
+                `;
+                lucide.createIcons();
+                gameModal.classList.add('active');
+                document.getElementById('closeHintBtn').addEventListener('click', () => gameModal.classList.remove('active'));
+            });
+
+            // --- Interactive Particle Background Logic ---
+            const canvas = document.getElementById('interactive-background');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particlesArray;
+
+                // get size of container
+                const container = document.getElementById('calculator');
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+
+                const mouse = { x: null, y: null, radius: (canvas.height/120) * (canvas.width/120) };
+                
+                container.addEventListener('mousemove', function(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = event.clientX - rect.left;
+                    mouse.y = event.clientY - rect.top;
+                });
+                 container.addEventListener('mouseleave', function() {
+                    mouse.x = null;
+                    mouse.y = null;
+                });
+
+                class Particle {
+                    constructor(x, y, directionX, directionY, size, color) {
+                        this.x = x; this.y = y; this.directionX = directionX;
+                        this.directionY = directionY; this.size = size; this.color = color;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+                        ctx.fill();
+                    }
+                    update() {
+                        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                        this.x += this.directionX;
+                        this.y += this.directionY;
+                        this.draw();
+                    }
+                }
+
+                function init() {
+                    particlesArray = [];
+                    let numberOfParticles = (canvas.width * canvas.height) / 9000;
+                    for (let i = 0; i < numberOfParticles; i++) {
+                        let size = (Math.random() * 2) + 1;
+                        let x = (Math.random() * (canvas.width - size * 2) + size * 2);
+                        let y = (Math.random() * (canvas.height - size * 2) + size * 2);
+                        let directionX = (Math.random() * .4) - .2;
+                        let directionY = (Math.random() * .4) - .2;
+                        particlesArray.push(new Particle(x, y, directionX, directionY, size));
+                    }
+                }
+
+                function connect() {
+                    let opacityValue = 1;
+                    for (let a = 0; a < particlesArray.length; a++) {
+                        // Connect to mouse
+                        if(mouse.x != null && mouse.y != null) {
+                             let distanceToMouse = ((particlesArray[a].x - mouse.x) * (particlesArray[a].x - mouse.x))
+                                + ((particlesArray[a].y - mouse.y) * (particlesArray[a].y - mouse.y));
+                            if(distanceToMouse < mouse.radius * 5000) {
+                                opacityValue = 1 - (distanceToMouse / (mouse.radius * 5000));
+                                const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+                                ctx.strokeStyle = particleColor.replace(/[^,]+(?=\))/, opacityValue);
+                                ctx.lineWidth = 1;
+                                ctx.beginPath();
+                                ctx.moveTo(mouse.x, mouse.y);
+                                ctx.lineTo(particlesArray[a].x, particlesArray[a].y);
+                                ctx.stroke();
+                            }
+                        }
+
+                        // Connect to other particles
+                        for (let b = a; b < particlesArray.length; b++) {
+                            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                            if (distance < (canvas.width/7) * (canvas.height/7)) {
+                                opacityValue = 1 - (distance/20000);
+                                const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+                                ctx.strokeStyle = particleColor.replace(/[^,]+(?=\))/, opacityValue); // replace alpha
+                                ctx.lineWidth = 1;
+                                ctx.beginPath();
+                                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    ctx.clearRect(0,0,canvas.width, canvas.height);
+                    for (let i = 0; i < particlesArray.length; i++) {
+                        particlesArray[i].update();
+                    }
+                    connect();
+                }
+
+                window.addEventListener('resize', function() {
+                    canvas.width = container.offsetWidth;
+                    canvas.height = container.offsetHeight;
+                    mouse.radius = ((canvas.height/120) * (canvas.height/120));
+                    init();
+                });
+                
+                init();
+                animate();
+            }
+
+            // --- Interactive Waterfall Footer ---
+            const waterfallCanvas = document.getElementById('waterfall-background');
+            if (waterfallCanvas) {
+                const ctx = waterfallCanvas.getContext('2d');
+                let drops = [];
+                const container = document.getElementById('contact');
+                waterfallCanvas.width = container.offsetWidth;
+                waterfallCanvas.height = container.offsetHeight;
+
+                const mouse = { x: null, y: null, radius: 150 };
+                
+                container.addEventListener('mousemove', function(event) {
+                    const rect = waterfallCanvas.getBoundingClientRect();
+                    mouse.x = event.clientX - rect.left;
+                    mouse.y = event.clientY - rect.top;
+                });
+                container.addEventListener('mouseleave', function() {
+                    mouse.x = null;
+                    mouse.y = null;
+                });
+
+                class Drop {
+                    constructor(x, y, vy, size) {
+                        this.x = x; this.y = y; this.vy = vy; this.size = size;
+                        this.origX = x;
+                    }
+                    draw() {
+                        const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+                        ctx.fillStyle = particleColor;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    update() {
+                        if (mouse.x && mouse.y) {
+                            const dx = this.x - mouse.x;
+                            const dy = this.y - mouse.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            if (distance < mouse.radius) {
+                                const force = (mouse.radius - distance) / mouse.radius;
+                                this.x += (dx / distance) * force * 2;
+                            }
+                        }
+                        
+                        // Gravity back to original column
+                        this.x += (this.origX - this.x) * 0.05;
+
+                        this.y += this.vy;
+                        if (this.y > waterfallCanvas.height) {
+                            this.y = 0;
+                            this.x = this.origX;
+                        }
+                        this.draw();
+                    }
+                }
+
+                function initWaterfall() {
+                    drops = [];
+                    let numberOfDrops = waterfallCanvas.width / 4;
+                    for (let i = 0; i < numberOfDrops; i++) {
+                        let x = Math.random() * waterfallCanvas.width;
+                        let y = Math.random() * waterfallCanvas.height;
+                        let vy = Math.random() * 1.5 + 1;
+                        let size = Math.random() * 1.5 + 0.5;
+                        drops.push(new Drop(x, y, vy, size));
+                    }
+                }
+
+                function animateWaterfall() {
+                    ctx.clearRect(0, 0, waterfallCanvas.width, waterfallCanvas.height);
+                    for (let i = 0; i < drops.length; i++) {
+                        drops[i].update();
+                    }
+                    requestAnimationFrame(animateWaterfall);
+                }
+
+                window.addEventListener('resize', function() {
+                    waterfallCanvas.width = container.offsetWidth;
+                    waterfallCanvas.height = container.offsetHeight;
+                    initWaterfall();
+                });
+
+                initWaterfall();
+                animateWaterfall();
+            }
+        });
+    </script>
+</body>
+</html>
